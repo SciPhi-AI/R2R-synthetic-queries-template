@@ -1,6 +1,6 @@
 # README
 
-This directory contains the necessary files to deploy a basic RAG pipeline using the R2R framework with the SciPhi cloud platform.
+This directory contains all the necessary files for deploying a RAG pipeline that generates synthetic queries at the ingress point, utilizing the R2R framework. This template can be deployed directly on the SciPhi cloud offering.
 
 ## File Structure
 
