@@ -36,7 +36,7 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
         db: VectorDBProvider,
         embedding_model: str,
         embeddings_provider: OpenAIEmbeddingProvider,
-        logging_provider: Optional[LoggingDatabaseConnection] = None,
+        logging_connection: Optional[LoggingDatabaseConnection] = None,
         system_prompt: Optional[str] = DEFAULT_SYSTEM_PROMPT,
         task_prompt: Optional[str] = DEFAULT_TASK_PROMPT,
     ) -> None:
@@ -47,7 +47,7 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
             db,
             embedding_model,
             embeddings_provider,
-            logging_provider=logging_provider,
+            logging_connection=logging_connection,
             system_prompt=system_prompt,
             task_prompt=task_prompt,
         )
