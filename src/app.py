@@ -149,4 +149,4 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
 
 
 # Creates a pipeline using the `E2EPipelineFactory`
-app = E2EPipelineFactory.create_pipeline(rag_pipeline_impl=SyntheticRAGPipeline, config_path='config.json')
+app = E2EPipelineFactory.create_pipeline(rag_pipeline_impl=SyntheticRAGPipeline, config=R2RConfig.load_config("config.json"))
