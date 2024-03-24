@@ -121,7 +121,7 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
         """
         if not generation_config:
             generation_config = GenerationConfig(model="gpt-3.5-turbo")
-            
+
         self.initialize_pipeline(query, search_only)
         transformed_queries = self.transform_query(query, generation_config)
         search_results = [
@@ -129,23 +129,28 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
             for transformed_query in transformed_queries
         ]
         if search_only:
-            return RAGCompletion(search_results, None, None)
-        
+            return RAGPipelineOutput(search_results, None, None)
+
         context = self.construct_context(search_results)
         prompt = self.construct_prompt({"query": query, "context": context})
 
         if not generation_config.stream:
             completion = self.generate_completion(prompt, generation_config)
-            return RAGCompletion(search_results, context, completion)
+            return RAGPipelineOutput(search_results, context, completion)
 
-        return self._stream_run(search_results, context, prompt, generation_config)
+        return self._stream_run(
+            search_results, context, prompt, generation_config
+        )
 
-    def _format_results(self, results: list[VectorSearchResult], start=1) -> str:
+    def _format_results(
+        self, results: list[VectorSearchResult], start=1
+    ) -> str:
         context = ""
         for i, ele in enumerate(results, start=start):
             context += f"[{i+start}] {ele.metadata['text']}\n\n"
 
         return context
+
 
 
 # Creates a pipeline using the `E2EPipelineFactory`
