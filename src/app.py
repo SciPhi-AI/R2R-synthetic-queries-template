@@ -6,7 +6,8 @@ from r2r.core import (GenerationConfig, LLMProvider, LoggingDatabaseConnection,
                       log_execution_to_db)
 from r2r.embeddings import OpenAIEmbeddingProvider
 from r2r.main import E2EPipelineFactory, R2RConfig
-from r2r.pipelines import BasicRAGPipeline
+from r2r.pipelines import BasicRAGPipeline, BasicPromptProvider
+
 
 logger = logging.getLogger(__name__)
 
@@ -48,8 +49,7 @@ class SyntheticRAGPipeline(BasicRAGPipeline):
             embedding_model,
             embeddings_provider,
             logging_connection=logging_connection,
-            system_prompt=system_prompt,
-            task_prompt=task_prompt,
+            prompt_provider=BasicPromptProvider(system_prompt, task_prompt)
         )
 
     def transform_query(self, query: str, generation_config: GenerationConfig) -> list[str]:  # type: ignore
