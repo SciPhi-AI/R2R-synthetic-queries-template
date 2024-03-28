@@ -2,6 +2,17 @@
 
 This directory contains all the necessary files for deploying a RAG pipeline that generates synthetic queries at the ingress point, utilizing the R2R framework. This template can be deployed directly on the SciPhi cloud offering.
 
+To test this application locally, run the following
+```bash
+# Install
+pip install -r requirements.txt
+
+# Launch
+uvicorn src.app:app
+```
+[Visit here](https://r2r-docs.sciphi.ai/core-features/app) for more information on how to customize your application.
+
+
 ## File Structure
 
 The main files in this directory are:
